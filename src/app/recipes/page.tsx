@@ -16,7 +16,7 @@ export default async function RecipesPage({
 
 	const params = new URLSearchParams({
 		apiKey: process.env.SPOONACULAR_API_KEY || "",
-		number: "10",
+		number: "100",
 	});
 
 	if (query) params.append("query", query);
