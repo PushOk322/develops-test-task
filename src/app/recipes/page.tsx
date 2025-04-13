@@ -10,7 +10,7 @@ interface Recipe {
 export default async function RecipesPage({
 	searchParams,
 }: {
-	searchParams?: { query?: string; cuisine?: string; prepTime?: string };
+	searchParams?: Promise<{ query?: string; cuisine?: string; prepTime?: string }>;
 }) {
 	const { query, cuisine, prepTime } = (await searchParams) || {};
 
@@ -42,10 +42,9 @@ export default async function RecipesPage({
 		} else {
 			recipes = data.results;
 		}
-	} catch (err: any) {
-		error =
-			err.message ||
-			"Failed to fetch recipes. Please try again later.";
+	} catch (err: unknown) {
+		console.error("🚀 ~ err:", err)
+		error = "Failed to fetch recipes. Please try again later.";
 	}
 
 	if (error) {

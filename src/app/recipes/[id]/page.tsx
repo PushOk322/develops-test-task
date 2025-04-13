@@ -16,11 +16,13 @@ interface Recipe {
 }
 
 export default async function RecipeDetailsPage({
-	params,
+  params
 }: {
-	params: { id: string };
-}) {
-	const recipeId = params.id;
+  params: Promise<{ id: string }>
+})
+ { 
+    const paramsObj = await params;
+	const recipeId = paramsObj.id
 
 	const url = `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${process.env.SPOONACULAR_API_KEY}`;
 
@@ -34,8 +36,9 @@ export default async function RecipeDetailsPage({
 
 		if (!res.ok) throw new Error(`API error: ${res.status}`);
 		recipe = await res.json();
-	} catch (err: any) {
-		error = err.message || "Failed to fetch recipe details";
+	} catch (err: unknown) {
+        console.error("🚀 ~ err:", err)        
+		error = "Failed to fetch recipe details";
 	}
 
 	if (error || !recipe) {
