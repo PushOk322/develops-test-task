@@ -25,8 +25,8 @@ Getting Started
 
 # 1. Clone the Repository
 
-git clone https://github.com/yourusername/recipe-finder-app.git
-cd recipe-finder-app
+git clone https://github.com/PushOk322/develops-test-task.git
+cd develops-test-task
 
 
 # 2. Install Dependencies
